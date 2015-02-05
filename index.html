@@ -7,19 +7,16 @@
 <body ng-controller="mainController">
 
 <h4>Add quote</h4>
-<input placeholder="Quote Text">
-<input placeholder="Author">
+<input placeholder="Quote Text" ng-model="inspire">
+<input placeholder="Author" ng-model="authorofInspiration">
 <button ng-click="addQuote()">Submit</button>
 
-<h4>Remove Quote</h4>
-<input placeholder="Remove Quote">
-<button ng-click="removeQuote()">Submit</button>
-
 <h4>Filter Quote</h4>
-<input placeholder="Filter">
+<input placeholder="Filter" ng-model="searchTerm">
+<button ng-click="removeQuote()">Remove Quote</button>
 
-<ul ng-repeat="quote in quotes">
-	<li>{{quote}}</li>
+<ul ng-repeat="quote in quotes | filter:searchTerm">
+	<li>"{{quote.text}}" -{{quote.author}}</li>
 </ul>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js"></script>

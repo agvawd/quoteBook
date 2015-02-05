@@ -16,17 +16,21 @@ app.service("mainService", function() {
   };
 
   this.addData = function(dataObj) {
-  	for (key in dataObj)
-  		if(key === "text" && key === "author")
+  		if(dataObj.text && dataObj.author)
   			quotes.push(dataObj);
   }
 
   this.removeData = function(text) {
   	for(var i = 0; i < quotes.length; i++) {
-  		if(quotes[i["text"]] === text)
+  		if(quotes[i].text.toUpperCase().indexOf(text.toUpperCase()) !== -1){
   			quotes.splice(i, 1);
+        i--;
+      }
+      else if(quotes[i].author.toUpperCase().indexOf(text.toUpperCase()) !== -1){
+        quotes.splice(i, 1);
+        i--;
+      }
   	}
-  	return quotes;
   }
 
 });
